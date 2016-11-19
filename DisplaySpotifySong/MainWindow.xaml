@@ -45,41 +45,53 @@
 
     <WindowsFormsHost Name="AlbumArt"
                       Grid.Column="0"
-                      Margin="10"
-                      Width="160"
-                      Height="160"
+                      Width="180"
+                      Height="180"
                       VerticalAlignment="Top" />
 
     <Grid Grid.Column="1"
           Margin="10,10,10,0"
           VerticalAlignment="Top">
+      
       <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition />
+        <RowDefinition Height="52" />
+        <RowDefinition Height="52" />
+        <RowDefinition Height="52" />
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0"
-                 Name="SongName"
-                 VerticalAlignment="Bottom"
-                 Margin="0, 0, 0, 5"
-                 FontSize="42"
-                 Foreground="White"
-                 FontWeight="Bold" />
+      <Canvas Name="SongNameCanvas"
+              Grid.Row="0"
+              Margin="0,0,0,5" >
 
-      <TextBlock Grid.Row="1"
-                 Name="ArtistName"
-                 FontSize="36"
-                 Foreground="White"
-                 FontWeight="Bold" />
+        <TextBlock Name="SongName"
+                   FontSize="42"
+                   Foreground="White"
+                   FontFamily="Xirod" >
+        </TextBlock>
+      </Canvas>
 
-      <TextBlock Grid.Row="2"
-                 Name="AlbumName"
-                 VerticalAlignment="Top"
-                 Margin="0, 5, 0, 0"
-                 FontSize="30"
-                 Foreground="White"
-                 FontWeight="Bold" />
+      <Canvas Name="ArtistNameCanvas"
+              Grid.Row="1"
+              Margin="0,5,0,5">
+
+        <TextBlock Name="ArtistName"
+                   FontSize="36"
+                   Foreground="White"
+                   FontFamily="Xirod" >
+        </TextBlock>
+      </Canvas>
+
+      <Canvas Name="AlbumNameCanvas"
+              Grid.Row="2"
+              Margin="0,5,0,0">
+
+        <TextBlock Name="AlbumName"
+                   FontSize="30"
+                   Foreground="White"
+                   FontFamily="Xirod" >
+        </TextBlock>
+      </Canvas>
+      
     </Grid>
   </Grid>
 </Window>

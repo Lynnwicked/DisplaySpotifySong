@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
 using SpotifyAPI.Local;
@@ -17,13 +15,15 @@ namespace DisplaySpotifySong {
   /// Interaction logic for MainWindow.xaml
   /// </summary>
   public partial class MainWindow : Window {
-    public delegate void ElementsSavedEvent(object sender, EventArgs e);
-
     private SpotifyLocalAPI _spotify;
     private Storyboard _sb1;
     private Storyboard _sb2;
 
-    private readonly PictureBox _albumArt = new PictureBox() {
+    private readonly DoubleAnimation _songNameAnimation = new DoubleAnimation();
+    private readonly DoubleAnimation _artistNameAnimation = new DoubleAnimation();
+    private readonly DoubleAnimation _albumNameAnimation = new DoubleAnimation();
+
+    private readonly PictureBox _albumArt = new PictureBox {
       SizeMode = PictureBoxSizeMode.Zoom
     };
 
@@ -57,9 +57,7 @@ namespace DisplaySpotifySong {
 
       _spotify.OnTrackChange += (s, args) => {
         Dispatcher.BeginInvoke(new Action(() => {
-          _sb1.Completed += (s1, e1) => {
-            SetElements(_spotify.GetStatus().Track);
-          };
+          _sb1.Completed += (s1, e1) => { SetElements(_spotify.GetStatus().Track); };
 
           _sb1.Begin();
         }));
@@ -75,7 +73,7 @@ namespace DisplaySpotifySong {
       Task.Run(() => {
         _isBusy = true;
 
-        albumArt = track.GetAlbumArt(AlbumArtSize.Size160);
+        albumArt = track.GetAlbumArt(AlbumArtSize.Size640);
 
         _isBusy = false;
 
@@ -86,9 +84,44 @@ namespace DisplaySpotifySong {
           ArtistName.Text = track.ArtistResource.Name;
           AlbumName.Text = track.AlbumResource.Name;
 
+          UpdateLayout();
+
+          if (SongName.ActualWidth > SongNameCanvas.ActualWidth) {
+            StartMarqueeAnimation(_songNameAnimation, SongName, SongNameCanvas);
+          }
+          else {
+            StopMarqueeAnimation(SongName);
+          }
+
+          if (ArtistName.ActualWidth > ArtistNameCanvas.ActualWidth) {
+            StartMarqueeAnimation(_artistNameAnimation, ArtistName, ArtistNameCanvas);
+          }
+          else {
+            StopMarqueeAnimation(ArtistName);
+          }
+
+          if (AlbumName.ActualWidth > AlbumNameCanvas.ActualWidth) {
+            StartMarqueeAnimation(_albumNameAnimation, AlbumName, AlbumNameCanvas);
+          }
+          else {
+            StopMarqueeAnimation(AlbumName);
+          }
+
           _sb2.Begin();
         }));
       });
+    }
+
+    private static void StartMarqueeAnimation(DoubleAnimation animation, FrameworkElement textBlock, FrameworkElement canvas) {
+      animation.From = -textBlock.ActualWidth;
+      animation.To = canvas.ActualWidth;
+      animation.RepeatBehavior = RepeatBehavior.Forever;
+      animation.Duration = new Duration(TimeSpan.Parse("0:0:15"));
+      textBlock.BeginAnimation(Canvas.RightProperty, animation);
+    }
+
+    private static void StopMarqueeAnimation(IAnimatable textBlock) {
+      textBlock.BeginAnimation(Canvas.RightProperty, null);
     }
   }
 }
