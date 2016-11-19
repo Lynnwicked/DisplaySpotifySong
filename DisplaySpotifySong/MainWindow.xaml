@@ -12,6 +12,7 @@
         Loaded="MainWindow_OnLoaded"
         Background="Lime"
         ResizeMode="NoResize">
+  
   <Window.Resources>
     <Storyboard x:Key="Storyboard1">
       <DoubleAnimation Storyboard.TargetName="SongDisplay"
@@ -80,7 +81,5 @@
                  Foreground="White"
                  FontWeight="Bold" />
     </Grid>
-
   </Grid>
-
 </Window>
