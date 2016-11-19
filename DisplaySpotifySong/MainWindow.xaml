@@ -1,35 +1,84 @@
-﻿<Window x:Class="DisplaySpotifySong.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:DisplaySpotifySong" mc:Ignorable="d" Title="MainWindow" MinWidth="500" Height="250" Width="1920" Loaded="MainWindow_OnLoaded" Background="Lime" ResizeMode="NoResize">
+﻿<Window x:Class="DisplaySpotifySong.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DisplaySpotifySong"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        MinWidth="900"
+        Height="250"
+        Width="900"
+        Loaded="MainWindow_OnLoaded"
+        Background="Lime"
+        ResizeMode="NoResize">
   <Window.Resources>
     <Storyboard x:Key="Storyboard1">
-      <DoubleAnimation Storyboard.TargetName="SongDisplay" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.50" />
-      <ThicknessAnimation Storyboard.TargetName="SongDisplay" Storyboard.TargetProperty="Margin" To="0,0,0,-250" Duration="0:0:0.50" />
+      <DoubleAnimation Storyboard.TargetName="SongDisplay"
+                       Storyboard.TargetProperty="Opacity"
+                       To="0"
+                       Duration="0:0:0.50" />
+      <ThicknessAnimation Storyboard.TargetName="SongDisplay"
+                          Storyboard.TargetProperty="Margin"
+                          To="0,0,0,-250"
+                          Duration="0:0:0.50" />
     </Storyboard>
     <Storyboard x:Key="Storyboard2">
-      <DoubleAnimation Storyboard.TargetName="SongDisplay" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.50" />
-      <ThicknessAnimation Storyboard.TargetName="SongDisplay" Storyboard.TargetProperty="Margin" To="0,0,0,0" Duration="0:0:0.50" />
+      <DoubleAnimation Storyboard.TargetName="SongDisplay"
+                       Storyboard.TargetProperty="Opacity"
+                       To="1"
+                       Duration="0:0:0.50" />
+      <ThicknessAnimation Storyboard.TargetName="SongDisplay"
+                          Storyboard.TargetProperty="Margin"
+                          To="0,0,0,0"
+                          Duration="0:0:0.50" />
     </Storyboard>
   </Window.Resources>
 
-  <Grid Name="SongDisplay" VerticalAlignment="Bottom">
+  <Grid Name="SongDisplay"
+        VerticalAlignment="Bottom">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <WindowsFormsHost Name="AlbumArt" Grid.Column="0" Margin="10" Width="160" Height="160" VerticalAlignment="Top" />
+    <WindowsFormsHost Name="AlbumArt"
+                      Grid.Column="0"
+                      Margin="10"
+                      Width="160"
+                      Height="160"
+                      VerticalAlignment="Top" />
 
-    <Grid Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top">
+    <Grid Grid.Column="1"
+          Margin="10,10,10,0"
+          VerticalAlignment="Top">
       <Grid.RowDefinitions>
-        <RowDefinition Height="61" />
+        <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
         <RowDefinition />
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" Name="SongName" VerticalAlignment="Bottom" Margin="0, 0, 0, 5" FontSize="42" Foreground="White" FontWeight="Bold" />
+      <TextBlock Grid.Row="0"
+                 Name="SongName"
+                 VerticalAlignment="Bottom"
+                 Margin="0, 0, 0, 5"
+                 FontSize="42"
+                 Foreground="White"
+                 FontWeight="Bold" />
 
-      <TextBlock Grid.Row="1" Name="ArtistName" FontSize="36" Foreground="White" FontWeight="Bold" />
+      <TextBlock Grid.Row="1"
+                 Name="ArtistName"
+                 FontSize="36"
+                 Foreground="White"
+                 FontWeight="Bold" />
 
-      <TextBlock Grid.Row="2" Name="AlbumName" VerticalAlignment="Top" Margin="0, 5, 0, 0" FontSize="30" Foreground="White" FontWeight="Bold" />
+      <TextBlock Grid.Row="2"
+                 Name="AlbumName"
+                 VerticalAlignment="Top"
+                 Margin="0, 5, 0, 0"
+                 FontSize="30"
+                 Foreground="White"
+                 FontWeight="Bold" />
     </Grid>
 
   </Grid>
