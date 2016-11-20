@@ -15,20 +15,12 @@
   
   <Window.Resources>
     <Storyboard x:Key="Storyboard1">
-      <DoubleAnimation Storyboard.TargetName="SongDisplay"
-                       Storyboard.TargetProperty="Opacity"
-                       To="0"
-                       Duration="0:0:0.50" />
       <ThicknessAnimation Storyboard.TargetName="SongDisplay"
                           Storyboard.TargetProperty="Margin"
                           To="0,0,0,-250"
                           Duration="0:0:0.50" />
     </Storyboard>
     <Storyboard x:Key="Storyboard2">
-      <DoubleAnimation Storyboard.TargetName="SongDisplay"
-                       Storyboard.TargetProperty="Opacity"
-                       To="1"
-                       Duration="0:0:0.50" />
       <ThicknessAnimation Storyboard.TargetName="SongDisplay"
                           Storyboard.TargetProperty="Margin"
                           To="0,0,0,0"
@@ -45,13 +37,13 @@
 
     <WindowsFormsHost Name="AlbumArt"
                       Grid.Column="0"
-                      Width="180"
-                      Height="180"
+                      Width="220"
+                      Height="220"
                       VerticalAlignment="Top" />
 
     <Grid Grid.Column="1"
           Margin="10,10,10,0"
-          VerticalAlignment="Top">
+          VerticalAlignment="Center">
       
       <Grid.RowDefinitions>
         <RowDefinition Height="52" />
@@ -61,7 +53,8 @@
 
       <Canvas Name="SongNameCanvas"
               Grid.Row="0"
-              Margin="0,0,0,5" >
+              Margin="0,0,0,5" 
+              ClipToBounds="True" >
 
         <TextBlock Name="SongName"
                    FontSize="42"
@@ -72,7 +65,8 @@
 
       <Canvas Name="ArtistNameCanvas"
               Grid.Row="1"
-              Margin="0,5,0,5">
+              Margin="0,5,0,5" 
+              ClipToBounds="True" >
 
         <TextBlock Name="ArtistName"
                    FontSize="36"
@@ -83,7 +77,8 @@
 
       <Canvas Name="AlbumNameCanvas"
               Grid.Row="2"
-              Margin="0,5,0,0">
+              Margin="0,5,0,0" 
+              ClipToBounds="True" >
 
         <TextBlock Name="AlbumName"
                    FontSize="30"
